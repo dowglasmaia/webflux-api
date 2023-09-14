@@ -1,0 +1,4 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://{USER_DATABASE}:{PASSWORD_DATABASE}@webfluxapicluster.ii0zfpn.mongodb.net/webflux-api?retryWrites=true&w=majority
