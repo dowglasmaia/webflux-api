@@ -2,17 +2,29 @@ package br.com.maia.webfluxapi.controller;
 
 import br.com.maia.webfluxapi.model.user.UserRequest;
 import br.com.maia.webfluxapi.model.user.UserResponse;
+import br.com.maia.webfluxapi.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@RestController
+@RequestMapping("/api/v1/users")
 public class UserController {
+
+
+    @Autowired
+    private UserService userService;
 
     @PostMapping
     public ResponseEntity<Mono<Void>> save(@RequestBody UserRequest request) {
-
-        return null;
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(
+                        userService.save(request)
+                                .then()
+                );
     }
 
     @GetMapping("/{id}")
