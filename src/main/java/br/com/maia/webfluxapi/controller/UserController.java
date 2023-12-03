@@ -21,15 +21,16 @@ public class UserController {
     @PostMapping
     public ResponseEntity<Mono<Void>> save(@RequestBody UserRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(
-                        userService.save(request)
-                                .then()
-                );
+                .body( userService.save(request)  );
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Mono<UserResponse>> findById(@PathVariable String id) {
-        return null;
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(
+                        userService.findById(id)
+
+                );
     }
 
     @GetMapping
